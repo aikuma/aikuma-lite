@@ -1,0 +1,60 @@
+<div flex layout="row" layout-align="start center" >
+    <div layout="column" flex="50" style="margin-right:10px;">
+        <div ng-class="recordClass" class="respeakwavesurfer" id="respeakRecord" layout="column" style="position:relative">
+            <md-progress-linear class="centertextbox" ng-if="!nrCtrl.hasrecdata" md-mode="indeterminate"></md-progress-linear>
+        </div>
+<!--
+        <md-button flex ng-if="!nrCtrl.externalRecord" ng-disabled="nrCtrl.recordUrl" class="md-raised ng-class:{'nowrecording': nrCtrl.isrecording}" aria-label="Save" ng-click="nrCtrl.toggleRecord()" >
+            <md-icon ng-if="!nrCtrl.isrecording" md-svg-icon="av:mic"></md-icon>
+            <md-icon ng-if="nrCtrl.isrecording" md-svg-icon="av:stop"></md-icon>
+        </md-button>
+-->
+    </div>
+    
+    <div layout="column" flex="50" layout="start space-between">
+        
+        <div flex layout="row" layout-align="start start">
+            <md-button class="md-icon-button" aria-label="Language">
+                <md-icon style="width:30px;height:30px" md-svg-icon="av:sort_by_alpha"></md-icon>
+            </md-button>
+            <md-input-container flex class="md-body-2" style="line-height:20px">
+                <label translate>SESSION_NAME</label>
+                <input class="md-body-2" ng-model="nrCtrl.selectedTitle">
+            </md-input-container>
+        </div>
+        <div style="height:20px;margin-bottom:10px;">
+            <span ng-show="!nrCtrl.selectedTitle" class="md-caption" translate>ERROR_SESSION_TITLE</span>
+        </div>
+
+        <ng-language-selector on-change="nrCtrl.saveLangs(langIds)" style="margin-bottom:13px"></ng-language-selector>
+        <div style="height:20px;margin-top:10px">
+            <span ng-show="nrCtrl.selectedLanguages.length === 0" class="md-caption" translate>ERROR_SESSION_LANG</span>
+        </div>
+        
+        <div flex layout="row">
+            <md-button class="md-icon-button" aria-label="People">
+                <md-icon style="width:30px;height:30px" md-svg-icon="mdi:account-multiple"></md-icon>
+            </md-button>
+            <md-chips ng-model="nrCtrl.people" placeholder="People" md-enable-chip-edit="true"></md-chips>
+        </div>
+
+        <ul id="recordingslist"></ul>
+    </div>
+</div>
+<md-button ng-disabled="!nrCtrl.hasrecdata" class="md-raised" ng-class="playbackClass" aria-label="Check" ng-click="nrCtrl.play()" >
+    <md-icon ng-if="!nrCtrl.externalRecord || (nrCtrl.externalRecord && !nrCtrl.wsRecord.isPlaying())" md-svg-icon="av:play_arrow"></md-icon>
+    <md-icon ng-if="nrCtrl.externalRecord && nrCtrl.wsRecord.isPlaying()" md-svg-icon="av:pause"></md-icon>
+<!--    <span class="buttontext">{{"PLAY" | translate}}</span>-->
+</md-button>
+<!--
+<md-button ng-if="!nrCtrl.externalRecord" class="md-raised" aria-label="Reset" ng-click="nrCtrl.cancelDelete()" >
+    <md-tooltip ng-if="nrCtrl.hasrecdata" class="md-body-2">{{"META_DEL" | translate}}</md-tooltip>
+    <md-tooltip ng-if="!nrCtrl.hasrecdata" class="md-body-2">{{"BUTTON_CANCEL" | translate}}</md-tooltip>
+    <md-icon ng-if="!nrCtrl.hasrecdata" md-svg-icon="nav:cancel"></md-icon>
+    <md-icon ng-if="nrCtrl.hasrecdata" md-svg-icon="action:delete"></md-icon>
+</md-button>
+-->
+<md-button ng-disabled="nrCtrl.isMetaEmpty()" class="md-raised" aria-label="Save" ng-click="nrCtrl.save()" >
+    <md-tooltip class="md-body-2">Save</md-tooltip>
+    <md-icon md-svg-icon="action:done"></md-icon>
+</md-button>

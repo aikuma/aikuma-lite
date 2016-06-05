@@ -1,0 +1,40 @@
+<div layout="row" layout-align="start center">
+    <md-button class="md-icon-button" aria-label="Language">
+        <md-icon style="width:30px;height:30px" md-svg-icon="action:language"></md-icon>
+    </md-button>
+    <md-chips flex ng-model="lsCtrl.selectedLanguages" md-autocomplete-snap
+              md-transform-chip="lsCtrl.transformChip($chip)"
+              md-require-match="false"
+              md-on-add="lsCtrl.add()"
+              md-on-remove="lsCtrl.remove()">
+        <md-autocomplete flex
+                md-input-name="lsCtrl.languageField"
+                md-selected-item="lsCtrl.selectedItem"
+                md-search-text="lsCtrl.searchText"
+                md-selected-item-change="lsCtrl.selectedItemChange(item,$index)"
+                md-items="item in lsCtrl.querySearch(lsCtrl.searchText)"
+                md-item-text="item.display"
+                md-delay="200"
+                md-min-length="2"
+                placeholder="Languages"
+                secondary-placeholder="Languages"
+                class="md-body-2"
+                style="min-width:150px">
+            <md-item-template>
+                <span md-highlight-text="lsCtrl.searchText" md-highlight-flags="^i">{{item.display}} ({{item.id}})</span>
+            </md-item-template>
+        </md-autocomplete>
+        <md-chip-template>
+            <span class="md-body-2">{{$chip.langStr}}</span><span ng-if="$chip.langISO!=''" class="md-body-2"> ({{$chip.langISO}})</span>
+        </md-chip-template>
+    </md-chips>
+    
+<!--
+    <md-button class="md-icon-button" aria-label="Use translation" ng-click="lsCtrl.help($event)">
+        <md-tooltip>
+            <span translate class="md-body-2">HELP_LANGS</span>
+        </md-tooltip>
+        <md-icon class="imgsvgicon" md-svg-icon="action:help"></md-icon>
+    </md-button>
+-->
+</div>

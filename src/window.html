@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="aikuma-lite" ng-strict-di>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- build:css css/combined.css -->
+        <!-- bower:css -->
+        <!-- endbower -->
+        <!-- inject:css -->
+        <!-- endinject -->
+        <!-- endbuild -->
+        <!-- build:js scripts/combined.js -->
+        <!-- bower:js -->
+        <!-- endbower -->
+        <!-- inject:js -->
+        <!-- endinject -->
+        <!-- endbuild -->
+        <title>Aikuma-lite</title>
+    </head>
+    <body layout="row" key-focus>
+        <ng-navbar ng-cloak></ng-navbar>
+        <md-content flex layout="column" class="backframe">
+            <md-content flex id="aikumaviewframe" layout="column" class="md-whiteframe-3dp" style="overflow:hidden">
+                <div ng-view flex layout="column"></div>
+            </md-content>
+        </md-content>
+    </body>
+</html>

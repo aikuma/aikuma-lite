@@ -1,0 +1,47 @@
+<div layout="row">
+<md-sidenav flex class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('(min-width: 1024px)')" style="overflow:hidden">
+    <header class="nav-header">
+        <div layout="column" layout-align="center center" ng-click="navCtrl.goHome()">
+            <img class="rollInLogo" width="200" height="200" src="img/worldvoices.svg" id="aikumaLogo"/>
+            <md-tooltip class="md-subhead" md-direction="top"><span translate>ABOUT_AIKUMA</span>-<i>NG</i></md-tooltip>
+            <div flex class="md-body-2 inset animated slideInLeft" style="color:black"><span translate></span> <i>{{navCtrl.currentUserName()}}</i></div>
+        </div>
+    </header>
+    
+<!--
+    <md-button ng-if="!navCtrl.getLoginStatus()" class="fullwidth" ng-click="navCtrl.login()">
+        <md-icon class="inset animated infinite rubberBand" md-svg-icon="social:person_outline"></md-icon>
+        <span flex translate>NAV_LOGIN</span>
+    </md-button>
+    <md-button ng-if="navCtrl.getLoginStatus()" class="fullwidth" ng-click="navCtrl.logout()">
+        <md-icon class="inset" md-svg-icon="social:person_outline"></md-icon>
+        <span flex translate>NAV_LOGOUT</span>
+    </md-button>
+-->
+    
+    <md-button class="fullwidth" input-model='file' output-path='source'>
+        <md-icon class="inset" md-svg-icon="file:folder_open"></md-icon>
+        <span>OPEN FILE</span>
+    </md-button>
+    
+<!--
+    <label ng-repeat="item in navCtrl.menu" ng-disabled="(item.state === 'home' || item.state === 'extensions')? false : !navCtrl.getLoginStatus()"
+           ng-if="item.state !== 'debug' || (navCtrl.getLoginStatus() && navCtrl.debug())"
+           class="md-button fullwidth" for="{{item.state==='import'? 'file-input':''}}" ng-click="navCtrl.changeState(item.state)">
+        <md-tooltip ng-if="item.tooltip" class="md-body-2" md-direction="right"><span translate>{{item.tooltip}}</span></md-tooltip>
+        <md-icon class="inset {{item.class}}" md-svg-icon="{{item.icon}}"></md-icon>
+        <span flex translate>{{item.title}}</span>
+    </label>
+-->
+
+    <div class="noclicky" style="position: absolute;bottom: 10px;padding-left: 10px;width:100%" ng-click="navCtrl.openAbout()" layout="row" layout-align="space-between center">
+        <span class="md-caption"><i><span translate>AIKUMA</span>-NG  <span translate>BETA</span> {{navCtrl.versionString}}</i></span>
+        <md-button class="animated infinite flash md-icon-button" ng-show="!navCtrl.isOnline()" style="padding-right:10px" arial-label="Offline">
+            <md-tooltip class="md-body-2" md-direction="top"><span translate>OFFLINE_MSG</span></md-tooltip>
+            <md-icon md-svg-icon="mdi:close-network"></md-icon>
+        </md-button>
+
+    </div>
+<!--    <input ng-disabled="!navCtrl.getLoginStatus()" id="file-input" type="file" file-model="file" accept="audio/*" style="display:none;" >-->
+</md-sidenav>
+</div>
